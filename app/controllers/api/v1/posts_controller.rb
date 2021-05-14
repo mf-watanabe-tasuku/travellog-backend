@@ -8,11 +8,27 @@ class Api::V1::PostsController < ApplicationController
       posts = Post.order(created_at: :desc)
     end
 
-    render json: { status: :ok, message: 'Posts Loaded', data: posts }
+    render json: { status: :ok, data: posts }
   end
-  
+
   def show
     post = Post.find(params[:id])
-    render json: { status: :ok, message: 'Post Loaded', data: post }
+    render json: { status: :ok, data: post }
+  end
+
+  def create
+    post = Post.new(post_params)
+
+    if post.save
+      render json: { status: :ok, data: post }
+    else
+      render json: { status: 500, data: post.errors }
+    end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
 end
