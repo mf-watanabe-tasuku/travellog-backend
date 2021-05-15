@@ -3,14 +3,16 @@ class Api::V1::PostsController < ApplicationController
 
   def index
     limit = request.query_parameters['limit']
+    start = request.query_parameters['start']
 
-    if limit
-      posts = Post.order(created_at: :desc).limit(limit)
-    else
-      posts = Post.order(created_at: :desc)
-    end
+    posts = Post.order(created_at: :desc).limit(limit).offset(start)
 
     render json: { status: :ok, data: posts }
+  end
+
+  def count
+    count = Post.all.count
+    render json: { status: :ok, data: count}
   end
 
   def show
