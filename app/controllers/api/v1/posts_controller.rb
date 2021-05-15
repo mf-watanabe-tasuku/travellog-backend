@@ -1,4 +1,6 @@
 class Api::V1::PostsController < ApplicationController
+  before_action :set_post, only: [ :show, :destroy ]
+
   def index
     limit = request.query_parameters['limit']
 
@@ -12,8 +14,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def show
-    post = Post.find(params[:id])
-    render json: { status: :ok, data: post }
+    render json: { status: :ok, data: @post }
   end
 
   def create
@@ -26,9 +27,18 @@ class Api::V1::PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post.delete
+    render json: { status: :ok }
+  end
+
   private
 
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
