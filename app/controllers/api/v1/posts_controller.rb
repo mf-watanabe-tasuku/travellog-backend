@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApplicationController
-  before_action :set_post, only: [ :show, :destroy ]
+  before_action :set_post, only: [ :show, :update, :destroy ]
 
   def index
     limit = request.query_parameters['limit']
@@ -24,6 +24,14 @@ class Api::V1::PostsController < ApplicationController
       render json: { status: :ok, data: post }
     else
       render json: { status: 500, data: post.errors }
+    end
+  end
+
+  def update
+    if @post.update(post_params)
+      render json: { status: :ok, message: 'Updated the post', data: @post}
+    else
+      render json: { status: 500, message: 'Not updated', data: @post.errors }
     end
   end
 
