@@ -1,0 +1,2 @@
+class Eyecatch < ApplicationRecord
+end

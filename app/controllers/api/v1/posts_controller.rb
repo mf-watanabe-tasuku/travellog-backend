@@ -50,5 +50,6 @@ class Api::V1::PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+    p @post
   end
 end
