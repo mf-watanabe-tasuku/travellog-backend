@@ -16,11 +16,9 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def show
-    eyecatch = Eyecatch.where(post_id: @post.id).last
-
     result = {
       post: @post,
-      image: eyecatch ? eyecatch['image'] : "https://res.cloudinary.com/dnzkxyfdv/image/upload/v1621204014/travellog/sample.jpg"
+      image: @post.eyecatch ? @post.eyecatch['image'] : nil
     }
 
     render json: { status: :ok, data: result }
