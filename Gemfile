@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'dotenv-rails'
 gem 'rack-cors'
 gem 'cloudinary'
 gem 'carrierwave'
