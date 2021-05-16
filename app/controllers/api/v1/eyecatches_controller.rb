@@ -1,7 +1,7 @@
 class Api::V1::EyecatchesController < ApplicationController
   def create
     result = Cloudinary::Uploader.upload(params[:files])
-    eyecatch = Eyecatch.create(post_id: params[:refId], image: result['filename'])
+    eyecatch = Eyecatch.new(post_id: params[:refId], image: result['filename'])
 
     if eyecatch.save
       render json: { status: :ok, data: eyecatch }
