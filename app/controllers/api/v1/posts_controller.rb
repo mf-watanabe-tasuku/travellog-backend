@@ -7,7 +7,14 @@ class Api::V1::PostsController < ApplicationController
 
     posts = Post.order(created_at: :desc).limit(limit).offset(start)
 
-    render json: { status: :ok, data: posts }
+    posts_data = []
+
+    posts.each do |post|
+      post.image = post.eyecatch ? post.eyecatch['image'] : nil
+      posts_data.push(post)
+    end
+
+    render json: { status: :ok, data: posts_data }
   end
 
   def count
@@ -16,12 +23,12 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def show
-    result = {
+    data = {
       post: @post,
       image: @post.eyecatch ? @post.eyecatch['image'] : nil
     }
 
-    render json: { status: :ok, data: result }
+    render json: { status: :ok, data: data }
   end
 
   def create
