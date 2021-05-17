@@ -25,7 +25,8 @@ class Api::V1::PostsController < ApplicationController
   def show
     data = {
       post: @post,
-      image: @post.eyecatch ? @post.eyecatch['image'] : nil
+      eyecatchUrl: @post.eyecatch ? @post.eyecatch['image'] : nil,
+      eyecatchId: @post.eyecatch ? @post.eyecatch['id'] : nil
     }
 
     render json: { status: :ok, data: data }

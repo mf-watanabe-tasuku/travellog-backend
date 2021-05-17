@@ -15,4 +15,10 @@ class Api::V1::EyecatchesController < ApplicationController
       render json: { status: 500, data: eyecatch.errors }
     end
   end
+
+  def destroy
+    eyecatch = Eyecatch.find(params[:id])
+    eyecatch.delete
+    render json: { status: :ok }
+  end
 end
