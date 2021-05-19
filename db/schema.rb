@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_054858) do
+ActiveRecord::Schema.define(version: 2021_05_19_221138) do
 
   create_table "eyecatches", force: :cascade do |t|
     t.string "image"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 2021_05_16_054858) do
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
