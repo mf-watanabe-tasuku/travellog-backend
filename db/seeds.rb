@@ -16,3 +16,12 @@ posts = Post.create([
     body: 'This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body This is post four body .'
   },
 ])
+
+user = User.create([
+  {
+    name: 'tasuku',
+    email: 'tasuku@example.com',
+    password: 'foobar',
+    password_confirmation: 'foobar'
+  }
+])
