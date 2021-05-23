@@ -1,7 +1,7 @@
 module JwtAuthenticator
   require 'jwt'
 
-  SECRET_KEY_BASE = Rails.application.secrets.secret_key_base
+  SECRET_KEY_BASE = Rails.application.credentials.secret_key_base
 
   def jwt_authenticate
     if request.headers['Authorization'].blank?
