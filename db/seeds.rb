@@ -10,7 +10,7 @@ CLOUDINARY_IMAGES = [
     body: Faker::Lorem.paragraph_by_chars(number: 1000, supplemental: false)
   })
 
-  post.build_eyecatch({
+  post.create_eyecatch({
     image: CLOUDINARY_IMAGES[post.id % 3]
   })
 end
