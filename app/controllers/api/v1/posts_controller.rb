@@ -33,7 +33,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
+    post = Post.new(post_params.merge(user_id: @user.id))
 
     if post.save
       render json: { status: "SUCCESS", message: "Saved post", data: post }, status: :ok
