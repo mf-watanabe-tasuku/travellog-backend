@@ -5,24 +5,20 @@ CLOUDINARY_IMAGES = [
 ]
 
 3.times do |i|
-  user = User.create([
-    {
-      name: "test#{i+1}",
-      email: "test#{i+1}@example.com",
-      password: 'foobar',
-      password_confirmation: 'foobar'
-    }
-  ])
+  user = User.create(
+    name: "test#{i+1}",
+    email: "test#{i+1}@example.com",
+    password: 'foobar',
+    password_confirmation: 'foobar'
+  )
 end
 
 20.times do |i|
-  post = Post.create({
+  post = Post.create(
     title: Faker::Company.bs.titlecase,
     body: Faker::Lorem.paragraph_by_chars(number: 1000, supplemental: false),
     user_id: i % 3 + 1
-  })
+  )
 
-  post.create_eyecatch({
-    image: CLOUDINARY_IMAGES[post.id % 3]
-  })
+  post.create_eyecatch(image: CLOUDINARY_IMAGES[post.id % 3])
 end
