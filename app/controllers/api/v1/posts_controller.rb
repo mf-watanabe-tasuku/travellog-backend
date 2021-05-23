@@ -19,7 +19,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def me
-    posts = Post.where(user_id: @user.id)
+    posts = Post.where(user_id: @user.id).order("updated_at DESC")
     render json: { status: "SUCCESS", message: "Loaded user posts", data: posts }, stauts: :ok
   end
 
