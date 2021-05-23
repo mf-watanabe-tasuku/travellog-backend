@@ -14,7 +14,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def count
-    count = Post.all.count
+    count = Post.count
     render json: { status: "SUCCESS", message: "Loaded post count", data: count }, status: :ok
   end
 
