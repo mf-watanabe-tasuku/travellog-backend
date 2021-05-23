@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         end
       end
       namespace :auth do
+        get '/user', to: 'users#user'
         post '/register', to: 'users#create'
         post '/login', to: 'sessions#create'
         delete '/logout', to: 'sessions#destroy'
