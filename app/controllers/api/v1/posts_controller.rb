@@ -38,7 +38,7 @@ class Api::V1::PostsController < ApplicationController
     if post.save
       render json: { status: "SUCCESS", message: "Saved post", data: post }, status: :ok
     else
-      render json: { status: "ERROR", message: "Post not saved", data: post.errors }, status: :unprocessable_entity
+      render json: { status: "ERROR", message: "Post not saved", data: post.errors.full_messages[0] }, status: :unprocessable_entity
     end
   end
 
