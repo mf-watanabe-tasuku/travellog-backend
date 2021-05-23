@@ -8,7 +8,7 @@ class Api::V1::PostsController < ApplicationController
     start = request.query_parameters['start']
 
     posts = Post.order(created_at: :desc).limit(limit).offset(start)
-    posts.each { |post| post.image = post.eyecatch['image'] if post.eyecatch }
+    posts.each { |post| post.eyecatchUrl = post.eyecatch['image'] if post.eyecatch }
 
     render json: { status: "SUCCESS", message: "Loaded posts", data: posts }, status: :ok
   end
@@ -31,7 +31,6 @@ class Api::V1::PostsController < ApplicationController
     post = Post.new(post_params)
 
     if post.save
-      p post
       render json: { status: "SUCCESS", message: "Saved post", data: post }, status: :ok
     else
       render json: { status: "ERROR", message: "Post not saved", data: post.errors }, status: :unprocessable_entity
