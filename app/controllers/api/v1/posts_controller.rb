@@ -18,6 +18,11 @@ class Api::V1::PostsController < ApplicationController
     render json: { status: "SUCCESS", message: "Loaded post count", data: count }, status: :ok
   end
 
+  def me
+    posts = Post.where(user_id: @user.id)
+    render json: { status: "SUCCESS", message: "Loaded user posts", data: posts }, stauts: :ok
+  end
+
   def show
     if @post.eyecatch
       @post.eyecatchId = @post.eyecatch['id']

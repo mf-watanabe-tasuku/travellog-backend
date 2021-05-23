@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :posts do
         collection do
           get :count
+          get :me
         end
       end
       namespace :auth do
