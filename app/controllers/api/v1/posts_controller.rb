@@ -1,6 +1,7 @@
 class Api::V1::PostsController < ApplicationController
   include JwtAuthenticator
   before_action :jwt_authenticate, except: [ :index, :show, :count ]
+  before_action :correct_user, only: :update
   before_action :set_post, only: [ :show, :update, :destroy ]
 
   def index
@@ -63,5 +64,12 @@ class Api::V1::PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def correct_user
+    post = Post.find(params[:id])
+    if @user.id != post.user_id
+      render json: { status: "ERROR", message: 'Not authorized' }, status: :unprocessable_entity
+    end
   end
 end
