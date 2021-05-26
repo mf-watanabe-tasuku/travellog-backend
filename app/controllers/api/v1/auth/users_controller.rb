@@ -1,6 +1,6 @@
 class Api::V1::Auth::UsersController < ApplicationController
   include JwtAuthenticator
-  before_action :jwt_authenticate, only: :user
+  before_action :jwt_authenticate, only: %i[ user ]
 
   def create
     user = User.new(user_params)

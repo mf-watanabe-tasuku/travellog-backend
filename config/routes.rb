@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   namespace :api, format: 'json' do
     namespace :v1 do
-      resources :eyecatches, only: [:create, :destroy]
+      resources :eyecatches, only: %i[ create destroy ]
       resources :posts do
         collection do
           get :count

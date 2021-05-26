@@ -1,8 +1,8 @@
 class Api::V1::PostsController < ApplicationController
   include JwtAuthenticator
-  before_action :jwt_authenticate, except: [ :index, :show, :count ]
-  before_action :correct_user, only: :update
-  before_action :set_post, only: [ :show, :update, :destroy ]
+  before_action :jwt_authenticate, except: %i[ index show count ]
+  before_action :correct_user, only: %i[ update ]
+  before_action :set_post, only: %i[ show update destroy ]
 
   def index
     limit = request.query_parameters['limit']
