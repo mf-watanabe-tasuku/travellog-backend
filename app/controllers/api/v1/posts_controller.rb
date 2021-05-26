@@ -8,8 +8,14 @@ class Api::V1::PostsController < ApplicationController
     limit = request.query_parameters['limit']
     start = request.query_parameters['start']
 
-    posts = Post.order(created_at: :desc).limit(limit).offset(start)
-    posts.each { |post| post.eyecatchUrl = post.eyecatch['image'] if post.eyecatch }
+    posts = Post.order(created_at: :desc)
+                .limit(limit)
+                .offset(start)
+                .includes(:eyecatch)
+
+    posts.each do |post|
+      post.eyecatchUrl = post.eyecatch['image'] if post.eyecatch
+    end
 
     render json: { status: "SUCCESS", message: "Loaded posts", data: posts }, status: :ok
   end
