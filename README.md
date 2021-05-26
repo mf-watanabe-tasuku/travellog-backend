@@ -1,24 +1,41 @@
-# README
+# Travel Log - backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
 
-Things you may want to cover:
+Next.js/Railを使ったポートフォリオとして作成したプロジェクトです。<br>`世界を旅するトラベルライターさんが書く旅ブログ`をテーマにしました。
 
-* Ruby version
+## 機能
 
-* System dependencies
+- 投稿機能
+- アイキャッチアップロード機能
+- ユーザー認証機能(JWT, HTTPOnly Cookie)
+- マップ表示機能
 
-* Configuration
+## 使用技術
 
-* Database creation
+|カテゴリ|技術|
+|---|---|
+|フロントエンド|Next.js|
+|バックエンド|Ruby on Rails6 (APIモード)|
+|画像アップロード|Cloudinary|
+|マップ表示|Mapbox / Google Cloud APIs|
+|ホスティング(フロント)|Vercel|
+|ホスティング(バックエンド)|Heroku|
 
-* Database initialization
+## 公開URL
 
-* How to run the test suite
+プロジェクトは[こちら](https://travellog-nu.vercel.app/)で公開しています。
 
-* Services (job queues, cache servers, search engines, etc.)
+### テストアカウント
 
-* Deployment instructions
+以下のテストアカウントで機能をお試しください。
 
-* ...
+```
+ID: test1@example.com
+PW: foobar
+```
+
+## フロントエンド用リポジトリ
+
+本リポジトリはバックエンド用のリポジトリです。
+フロントエンド用のリポジトリ[こちら](https://github.com/tasukuwatanabe/travellog-frontend)です。
