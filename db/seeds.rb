@@ -17,6 +17,7 @@ end
   post = Post.create(
     title: Faker::Company.bs.titlecase,
     body: Faker::Lorem.paragraph_by_chars(number: 1000, supplemental: false),
+    place: Faker::Nation.capital_city,
     user_id: i % 3 + 1
   )
 
